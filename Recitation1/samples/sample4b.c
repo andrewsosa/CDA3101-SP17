@@ -4,6 +4,10 @@
 //
 //
 
+#include "stdio.h"
+#include "string.h"
+
+#define BUFFER_SIZE 50
 
 typedef struct {
 	char label[20];
@@ -13,26 +17,37 @@ typedef struct {
 
 line_t lines[100];
 
-int index = 0;
+int i = 0;
 int addr = 0;
-char buffer[128];
+char buffer[BUFFER_SIZE];
 char label[20];
 char instruction[30];
 
-while(fgets(buffer, 128, stdin)) {
+int main(int argc, char const *argv[]) {
 
-	if(sscanf(buffer, "%[^:]:\t%[^\n]", label, instruction) == 2){
-		/* Found a label and an instruction */
-		strncpy(lines[index].label, label, strnlen(label));
-		strncpy(lines[index].instruction, instruction, strnlen(instruction));
+	while(fgets(buffer, BUFFER_SIZE, stdin)) {
+
+		if(sscanf(buffer, "%[^:]:\t%[^\n]", label, instruction) == 2){
+			/* Found a label and an instruction */
+			strncpy(lines[i].label, label, strlen(label));
+			strncpy(lines[i].instruction, instruction, strlen(instruction));
+		}
+		else if(sscanf(buffer, "\t%[^\n]", instruction) == 1){
+			/* Line only contains an instruction */
+		}
+
+		lines[i].addr = addr;
+
+
+		printf("%06X: %s\n",lines[i].addr, lines[i].instruction);
+		// %d vs %X vs %06X
+
+		// iterate
+		addr = addr + 4;
+		i++;
+
 	}
 
-	lines[index].addr = addr;
 
-	if(instuction = la) {
-		index++;
-
-	}
-
-	index++;
+	return 0;
 }

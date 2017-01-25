@@ -1,0 +1,12 @@
+MAIN:	addi	$s0,$s1,4
+MAIN:	addi	$s0,$s1,4
+MAIN:	addi	$s0,$s1,4
+MAIN:	addi	$s0,$s1,4
+MAIN:	addi	$s0,$s1,4
+MAIN:	addi	$s0,$s1,4
+MAIN:	addi	$s0,$s1,4
+MAIN:	addi	$s0,$s1,4
+MAIN:	addi	$s0,$s1,4
+MAIN:	addi	$s0,$s1,4
+MAIN:	addi	$s0,$s1,4
+MAIN:	addi	$s0,$s1,4
