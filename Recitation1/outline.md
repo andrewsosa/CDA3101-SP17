@@ -8,12 +8,12 @@ Goals:
 
 Check the most advanced programming courses taken by people in class.
 
-## Project Requirements
+## Outline
 
-Demonstrate C vs C++, show sample C compile on linprog.
+1. Cover project
 
 
-## Recommended approach
+## Recommended approach from Caitlin
 
 ```
 typedef struct {
