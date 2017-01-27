@@ -15,6 +15,12 @@ typedef struct {
 	int addr;
 } line_t;
 
+typedef struct {
+	char label[20];
+	int addr;
+	char value[32];
+} data_t;
+
 line_t lines[100];
 
 int i = 0;
