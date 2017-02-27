@@ -80,6 +80,12 @@ int get_shamt(unsigned int);
 int get_opcode(unsigned int);
 void printInstruction(unsigned int);
 
+
+int fromWord(int i) {
+    return i/4;
+}
+
+
 int main(){
     run();
     return(0);
@@ -111,8 +117,11 @@ void run(){
         /* --------------------- IF stage --------------------- */
 
             // Load instruction for given PC
+            newState.IFID.instr = state.instrMem[fromWord(state.PC)];
 
             // Increment and store PC
+            newState.IFID.PCPlus4 = state.PC + 4;
+            newState.PC = state.PC + 4;
 
         /* --------------------- ID stage --------------------- */
 
@@ -123,6 +132,7 @@ void run(){
                 // alternative brach behavior
 
             // Pass instruction forward
+            newState.IDEX.instr = state.IFID.instr;
 
             // Pass PC forward
 
@@ -132,10 +142,11 @@ void run(){
         /* --------------------- EX stage --------------------- */
 
             // Pass instruction forward
+            newState.EXMEM.instr = state.IDEX.instr;
 
             // Check for parameter hazards
 
-            // Performa ALU operation
+            // Perform ALU operation
 
                 // * special case for branch prediction
 
@@ -145,6 +156,7 @@ void run(){
         /* --------------------- MEM stage --------------------- */
 
             // Pass instruction forward
+            newState.MEMWB.instr = state.EXMEM.instr;
 
             // Read or write memory
 
