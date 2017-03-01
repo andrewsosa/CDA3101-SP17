@@ -111,12 +111,15 @@ void run(){
         /* --------------------- IF stage --------------------- */
 
             // Load instruction for given PC
+            newState.IFID.instr = state.instrMem[state.PC/4];
 
             // Increment and store PC
+            newState.PC = state.PC + 4;
 
         /* --------------------- ID stage --------------------- */
 
-            // [mystery item]
+            // write back operations
+            newState.IDEX.instr = state.IFID.instr;
 
             // Look for hazards which might cause alternative behavior
 
@@ -124,7 +127,7 @@ void run(){
 
             // Pass instruction forward
 
-            // Pass PC forward
+            // Pass PCPlus4 forward
 
             // Read register and immediate fields (also branch target)
 
@@ -132,10 +135,11 @@ void run(){
         /* --------------------- EX stage --------------------- */
 
             // Pass instruction forward
+            newState.EXMEM.instr = state.IDEX.instr;
 
             // Check for parameter hazards
 
-            // Performa ALU operation
+            // Perform ALU operation
 
                 // * special case for branch prediction
 
@@ -145,6 +149,7 @@ void run(){
         /* --------------------- MEM stage --------------------- */
 
             // Pass instruction forward
+            newState.MEMWB.instr = state.EXMEM.instr;
 
             // Read or write memory
 
